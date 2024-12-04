@@ -1,61 +1,64 @@
-//
-//  SwiftUIViewSignup.swift
-//  DashZane (Final Project)
-//
-//  Created by Zane Matarieh on 11/20/24.
-//
-
 import SwiftUI
-import SwiftData
 
 struct SwiftUIViewSignup: View {
-    @Environment(\.modelContext) private var context // Access SwiftData from all files
-    @State var masterSignupUsername = ""
-    @State var masterSignupPassword = ""
-    @State var signupMessage = ""
-
+    @Binding var user: UserData?
+    @Binding var users: [UserData] // List of all registered users
+    @Binding var isLoggedIn: Bool
+    
+    @State private var username = ""
+    @State private var password = ""
+    @State private var message = ""
+    
     var body: some View {
         VStack {
-            Text("Create a new account")
-                .font(.bold(.title)())
+            Text("Sign Up")
+                .font(.largeTitle)
                 .padding()
-
-            Text("Username")
-                .padding()
-
-            TextField("Enter username", text: $masterSignupUsername)
+            
+            TextField("Create a username", text: $username)
                 .textFieldStyle(.roundedBorder)
-                .multilineTextAlignment(.center)
-                .frame(width: 200, height: 30)
                 .padding()
-
-            Text("Password")
-                .padding()
-
-            SecureField("Enter password", text: $masterSignupPassword)
+                .autocapitalization(.none)
+                .disableAutocorrection(true)
+            
+            SecureField("Create a password", text: $password)
                 .textFieldStyle(.roundedBorder)
-                .multilineTextAlignment(.center)
-                .frame(width: 200, height: 30)
                 .padding()
-
+            
             Button("Sign Up") {
-                signUp()
+                signUpUser()
             }
             .padding()
-
-            if !signupMessage.isEmpty {
-                Text(signupMessage)
-                    .foregroundColor(signupMessage == "Signup successful!" ? .green : .red)
-                    .padding()
+            
+            Text(message)
+                .foregroundColor(message == "Signup successful!" ? .green : .red)
+                .padding()
+        }
+        .padding()
+    }
+    
+    private func signUpUser() {
+        print("Users before signup: \(users)")
+        
+        if username.trimmingCharacters(in: .whitespacesAndNewlines).isEmpty ||
+            password.trimmingCharacters(in: .whitespacesAndNewlines).isEmpty {
+            message = "Both fields are required."
+            return
+        }
+        
+        for user in users {
+            if user.username.lowercased() == username.lowercased() {
+                message = "Username already exists."
+                return
             }
+        }
+        let newUser = UserData(username: username, password: password)
+        users.append(newUser)
+        print("Users after signup: \(users)")
+        user = newUser
+        message = "Signup successful!"
+        DispatchQueue.main.asyncAfter(deadline: .now() + 1.0) {
+            isLoggedIn = true
         }
     }
-
-    // Function to handle signup
-    func signUp() {
-                    
-            }
-        }
-#Preview {
-    SwiftUIViewSignup()
 }

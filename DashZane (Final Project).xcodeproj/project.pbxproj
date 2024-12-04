@@ -7,7 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
-		16FA22502CEF8EAE00E3C487 /* UserData.swift in Sources */ = {isa = PBXBuildFile; fileRef = 16FA224F2CEF8EAE00E3C487 /* UserData.swift */; };
+		1634416A2CFE10BE0038F72C /* UserData.swift in Sources */ = {isa = PBXBuildFile; fileRef = 163441692CFE10BE0038F72C /* UserData.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -28,10 +28,10 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
+		163441692CFE10BE0038F72C /* UserData.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = UserData.swift; path = "DashZane (Final Project)/UserData.swift"; sourceTree = "<group>"; };
 		167F1B5B2CECEE0000720DB3 /* DashZane (Final Project).app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "DashZane (Final Project).app"; sourceTree = BUILT_PRODUCTS_DIR; };
 		167F1B6B2CECEE0300720DB3 /* DashZane (Final Project)Tests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = "DashZane (Final Project)Tests.xctest"; sourceTree = BUILT_PRODUCTS_DIR; };
 		167F1B752CECEE0300720DB3 /* DashZane (Final Project)UITests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = "DashZane (Final Project)UITests.xctest"; sourceTree = BUILT_PRODUCTS_DIR; };
-		16FA224F2CEF8EAE00E3C487 /* UserData.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserData.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFileSystemSynchronizedRootGroup section */
@@ -70,7 +70,7 @@
 		167F1B522CECEE0000720DB3 = {
 			isa = PBXGroup;
 			children = (
-				16FA224F2CEF8EAE00E3C487 /* UserData.swift */,
+				163441692CFE10BE0038F72C /* UserData.swift */,
 				167F1B5D2CECEE0000720DB3 /* DashZane (Final Project) */,
 				167F1B5C2CECEE0000720DB3 /* Products */,
 			);
@@ -224,7 +224,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				16FA22502CEF8EAE00E3C487 /* UserData.swift in Sources */,
+				1634416A2CFE10BE0038F72C /* UserData.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

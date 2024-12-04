@@ -1,43 +1,62 @@
-//
-//  SwiftUIViewLogin.swift
-//  DashZane (Final Project)
-//
-//  Created by Zane Matarieh on 11/20/24.
-//
-
 import SwiftUI
 
 struct SwiftUIViewLogin: View {
+    @Binding var user: UserData?
+    @Binding var users: [UserData] // List of all users
+    @Binding var isLoggedIn: Bool // Tracks whether the user is logged in
+    
+    @State private var username = ""
+    @State private var password = ""
+    @State private var message = ""
+    
     var body: some View {
         VStack {
-            @State var masterUsername = ""
-            @State var masterPassword = ""
-            Text("Log in to existing account")
-                .font(.bold(.title)())
-                .padding()
-            Text("Username")
-                .padding()
-            TextField("Enter username" , text:$masterUsername)
-                .textFieldStyle(.roundedBorder)
-                .multilineTextAlignment(.center)
-                .frame(width: 200, height: 30)
-                .padding()
-            Text("Password")
-                .padding()
-            TextField("Enter username" , text: $masterPassword)
-                .textFieldStyle(.roundedBorder)
-                .multilineTextAlignment(.center)
-                .frame(width: 200, height: 30)
+            Text("Log In")
+                .font(.largeTitle)
                 .padding()
             
-            Button("Log in") {
-                
+            TextField("Enter username", text: $username)
+                .textFieldStyle(.roundedBorder)
+                .padding()
+                .autocapitalization(.none)
+                .disableAutocorrection(true)
+            
+            SecureField("Enter password", text: $password)
+                .textFieldStyle(.roundedBorder)
+                .padding()
+            
+            Button("Log In") {
+                logInUser()
             }
             .padding()
+            
+            Text(message)
+                .foregroundColor(message == "Login successful!" ? .green : .red)
+                .padding()
         }
+        .padding()
     }
-}
-
-#Preview {
-    SwiftUIViewLogin()
+    
+    private func logInUser() {
+        print("Users array: \(users)") // Add this debug print to check the users array.
+        print("Entered username: \(username), Entered password: \(password)") // Add debug prints for username and password.
+        
+        
+        for auser in users{
+            if(auser.username == username && auser.password == password){
+                user = auser
+                message = "Login successful!"
+                DispatchQueue.main.asyncAfter(deadline: .now() + 1.0) {
+                    isLoggedIn = true
+                }
+            }
+            else
+            {
+                print("No matching user found.")
+                message = "Invalid username or password."
+            }
+            
+        }
+        
+    }
 }
