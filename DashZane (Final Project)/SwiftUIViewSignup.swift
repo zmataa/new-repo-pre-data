@@ -10,31 +10,34 @@ struct SwiftUIViewSignup: View {
     @State private var message = ""
     
     var body: some View {
-        VStack {
-            Text("Sign Up")
-                .font(.largeTitle)
+        ZStack{
+            Color.green.opacity(0.2).edgesIgnoringSafeArea(.all)
+            VStack {
+                Text("Sign Up")
+                    .font(.largeTitle)
+                    .padding()
+                
+                TextField("Create a username", text: $username)
+                    .textFieldStyle(.roundedBorder)
+                    .padding()
+                    .autocapitalization(.none)
+                    .disableAutocorrection(true)
+                
+                SecureField("Create a password", text: $password)
+                    .textFieldStyle(.roundedBorder)
+                    .padding()
+                
+                Button("Sign Up") {
+                    signUpUser()
+                }
                 .padding()
-            
-            TextField("Create a username", text: $username)
-                .textFieldStyle(.roundedBorder)
-                .padding()
-                .autocapitalization(.none)
-                .disableAutocorrection(true)
-            
-            SecureField("Create a password", text: $password)
-                .textFieldStyle(.roundedBorder)
-                .padding()
-            
-            Button("Sign Up") {
-                signUpUser()
+                
+                Text(message)
+                    .foregroundColor(message == "Signup successful!" ? .green : .red)
+                    .padding()
             }
             .padding()
-            
-            Text(message)
-                .foregroundColor(message == "Signup successful!" ? .green : .red)
-                .padding()
         }
-        .padding()
     }
     
     private func signUpUser() {

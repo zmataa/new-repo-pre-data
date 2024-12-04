@@ -10,31 +10,34 @@ struct SwiftUIViewLogin: View {
     @State private var message = ""
     
     var body: some View {
-        VStack {
-            Text("Log In")
-                .font(.largeTitle)
+        ZStack{
+            Color.green.opacity(0.2).edgesIgnoringSafeArea(.all)
+            VStack {
+                Text("Log In")
+                    .font(.largeTitle)
+                    .padding()
+                
+                TextField("Enter username (case sensitive)", text: $username)
+                    .textFieldStyle(.roundedBorder)
+                    .padding()
+                    .autocapitalization(.none)
+                    .disableAutocorrection(true)
+                
+                SecureField("Enter password", text: $password)
+                    .textFieldStyle(.roundedBorder)
+                    .padding()
+                
+                Button("Log In") {
+                    logInUser()
+                }
                 .padding()
-            
-            TextField("Enter username", text: $username)
-                .textFieldStyle(.roundedBorder)
-                .padding()
-                .autocapitalization(.none)
-                .disableAutocorrection(true)
-            
-            SecureField("Enter password", text: $password)
-                .textFieldStyle(.roundedBorder)
-                .padding()
-            
-            Button("Log In") {
-                logInUser()
+                
+                Text(message)
+                    .foregroundColor(message == "Login successful!" ? .green : .red)
+                    .padding()
             }
             .padding()
-            
-            Text(message)
-                .foregroundColor(message == "Login successful!" ? .green : .red)
-                .padding()
         }
-        .padding()
     }
     
     private func logInUser() {

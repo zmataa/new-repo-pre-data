@@ -1,25 +1,24 @@
 import SwiftUI
 
 struct ContentView: View {
-    @State private var users: [UserData] = [] // List of all registered users
-    @State private var user: UserData? = nil // The currently logged-in user
-    @State private var isLoggedIn = false // Tracks login status
+    @State private var users: [UserData] = [] // create a list of all users as a userdata datatype
+    @State private var user: UserData? = nil // The currently logged in user
+    @State private var isLoggedIn = false // Tracks if there is a user logged in
 
     var body: some View {
         NavigationView {
             ZStack {
-                // Background Color (Forest Green)
-                Color.green.opacity(0.2).edgesIgnoringSafeArea(.all)
+                Color.green.opacity(0.2).edgesIgnoringSafeArea(.all) //background color
                 VStack {
                     Image("logo")
                         .resizable()
                            .scaledToFit()
                            .scaleEffect(0.8)
-                    if isLoggedIn, let user = user {
-                        // Main App View when logged in
+                    if isLoggedIn, let user = user{
+                        // lets user be used inside the block and calls mainappview with the signed in user
                         MainAppView(user: $user)
                     } else {
-                        // Sign Up and Log In Links
+                        // sign up and log in links
                         VStack(spacing: 20) {
                             NavigationLink(
                                 "Sign Up",
@@ -40,46 +39,13 @@ struct ContentView: View {
                             .cornerRadius(8)
                         }
                         .padding()
-                        
-                        // About Section Link
-                        NavigationLink(
-                            "About",
-                            destination: AboutView()
-                        )
-                        .font(.headline)
-                        .padding()
-                        .background(Color.gray.opacity(0.1))
-                        .cornerRadius(8)
                     }
                 }
                 .onAppear {
-                    print("Users array in ContentView: \(users)")
+                    print("Users: \(users)") //debug
                 }
             }
         }
     }
 }
 
-// About Section View
-struct AboutView: View {
-    var body: some View {
-        VStack {
-            Text("About DashZane")
-                .font(.largeTitle)
-                .padding()
-
-            Text("DashZane is a simple password manager to store and manage your credentials safely and securely.")
-                .font(.body)
-                .padding()
-
-            Spacer()
-        }
-        .padding()
-        .navigationTitle("About DashZane")
-    }
-}
-struct ContentView_Previews: PreviewProvider {
-    static var previews: some View {
-        ContentView()
-    }
-}

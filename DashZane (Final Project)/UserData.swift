@@ -1,6 +1,7 @@
 import Foundation
 
-struct UserData {
+struct UserData: Codable, Identifiable { //makes userdata usable by userdefaults storage
+    var id = UUID() //makes unique id for each item
     var username: String
     var password: String
     var dataList: [DataItem] = []
@@ -12,7 +13,8 @@ struct UserData {
     
 }
 
-struct DataItem{
+struct DataItem: Codable, Identifiable{
+    var id = UUID() //makes unique id for each item
     var username: String
     var password: String
     var website: String

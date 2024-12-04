@@ -1,14 +1,14 @@
 import SwiftUI
 
 struct MainAppView: View {
-    @Binding var user: UserData? // The currently logged-in user
-    
+    @Binding var user: UserData? // The currently logged in user
     @State private var newWebsite = ""
     @State private var newUsername = ""
     @State private var newPassword = ""
     
     var body: some View {
         ZStack(alignment: .bottomTrailing) {
+            Color.green.opacity(0.2).edgesIgnoringSafeArea(.all)
             VStack(alignment: .leading) {
                 if let user = user {
                     // Welcome Message
