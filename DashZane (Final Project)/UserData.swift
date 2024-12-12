@@ -4,11 +4,13 @@ struct UserData: Codable, Identifiable { //makes userdata usable by userdefaults
     var id = UUID() //makes unique id for each item
     var username: String
     var password: String
-    var dataList: [DataItem] = []
-
-    mutating func addDataItem(username: String, password: String, website: String) {
-        let newItem = DataItem(username: username, password: password, website: website)
-        dataList.append(newItem)
+    var dataList: [DataItem]
+    
+    init(username: String, password: String)
+    {
+        self.username = username
+        self.password = password
+        self.dataList = [DataItem]()
     }
     
 }

@@ -1,7 +1,7 @@
 import SwiftUI
 
 struct ContentView: View {
-    @State private var users: [UserData] = [] // create a list of all users as a userdata datatype
+    @State private var users: [UserData] = [UserData]() // create a list of all users as a userdata datatype
     @State private var user: UserData? = nil // The currently logged in user
     @State private var isLoggedIn = false // Tracks if there is a user logged in
 
@@ -14,9 +14,9 @@ struct ContentView: View {
                         .resizable()
                            .scaledToFit()
                            .scaleEffect(0.8)
-                    if isLoggedIn, let user = user{
+                    if isLoggedIn {
                         // lets user be used inside the block and calls mainappview with the signed in user
-                        MainAppView(user: $user)
+                        MainAppView(user: $user, users: $users, isLoggedIn:  $isLoggedIn)
                     } else {
                         // sign up and log in links
                         VStack(spacing: 20) {
